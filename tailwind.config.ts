@@ -57,6 +57,16 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        status: {
+          safe: "hsl(var(--status-safe))",
+          caution: "hsl(var(--status-caution))",
+          danger: "hsl(var(--status-danger))",
+        },
+        chart: {
+          vibration: "hsl(var(--chart-vibration))",
+          temperature: "hsl(var(--chart-temperature))",
+          moisture: "hsl(var(--chart-moisture))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
