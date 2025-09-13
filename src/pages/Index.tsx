@@ -4,12 +4,12 @@ import { AlertPanel } from '@/components/AlertPanel';
 import { RiskAssessment } from '@/components/RiskAssessment';
 import { StatusIndicator } from '@/components/StatusIndicator';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useSensorData } from '@/hooks/useSensorData';
+import { useSupabaseSensorData } from '@/hooks/useSupabaseSensorData';
 import { Badge } from '@/components/ui/badge';
 import { Mountain, Zap, Thermometer, Droplets, Camera, Brain } from 'lucide-react';
 
 const Index = () => {
-  const { data, alerts, riskData } = useSensorData();
+  const { data, alerts, riskData, loading } = useSupabaseSensorData();
 
   const latestReading = data[data.length - 1] || {
     vibration: 0,
@@ -34,6 +34,17 @@ const Index = () => {
     if (value < 85) return 'caution';
     return 'danger';
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading sensor data from Supabase...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
